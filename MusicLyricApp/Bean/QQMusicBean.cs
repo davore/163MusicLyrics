@@ -6,6 +6,14 @@ namespace MusicLyricApp.Bean
 {
     public class QQMusicBean
     {
+        public class PlaylistResult
+        {
+            public long Code { get; set; }
+
+            public PlaylistInfo Data { get; set; }
+
+            public string Message { get; set; }
+        }
         public class AlbumResult
         {
             public long Code { get; set; }
@@ -59,6 +67,42 @@ namespace MusicLyricApp.Bean
             public string Subtitle { get; set; }
 
             public string Title { get; set; }
+        }
+
+        public class PlaylistInfo
+        {
+            public string ADate { get; set; }
+
+            public string Company { get; set; }
+
+            public long Id { get; set; }
+
+            public string Lan { get; set; }
+
+            public PlaylistSong[] List { get; set; }
+
+            public string Mid { get; set; }
+
+            public string Name { get; set; }
+
+            public long Singerid { get; set; }
+
+            public string Singermid { get; set; }
+
+            public string Singername { get; set; }
+
+            public int Total { get; set; }
+        }
+
+        public class PlaylistSong
+        {
+            public Singer[] singer { get; set; }
+
+            public long Songid { get; set; }
+
+            public string Songmid { get; set; }
+
+            public string Songname { get; set; }
         }
 
         public class AlbumInfo

@@ -35,9 +35,23 @@ namespace MusicLyricApp.Utils
                 {
                     return input;
                 }
-                
+
                 // ID 提取
-                var keyword = searchType == SearchTypeEnum.SONG_ID ? "song?id=" : "album?id=";
+                var keyword = "";
+                if (searchType == SearchTypeEnum.SONG_ID)
+                {
+                    keyword = "song?id=";
+                }
+                else if (searchType == SearchTypeEnum.ALBUM_ID)
+                {
+                    keyword = "album?id=";
+                }
+                else if (searchType == SearchTypeEnum.PLAYLIST_ID)
+                {
+                    keyword = "playlist?id=";
+                }
+            
+
                 var index = input.IndexOf(keyword, StringComparison.Ordinal);
                 if (index == -1)
                 {
@@ -70,7 +84,19 @@ namespace MusicLyricApp.Utils
                 if (input.Contains("/"))
                 {
                     // ID 提取
-                    var keyword = searchType == SearchTypeEnum.SONG_ID ? "songDetail/" : "albumDetail/";
+                    var keyword = "";
+                    if (searchType == SearchTypeEnum.SONG_ID)
+                    {
+                        keyword = "songDetail/";
+                    }
+                    else if (searchType == SearchTypeEnum.ALBUM_ID)
+                    {
+                        keyword = "albumDetail/";
+                    }
+                    else if (searchType == SearchTypeEnum.PLAYLIST_ID)
+                    {
+                        keyword = "playlistDetail/";
+                    }
                     var index = input.IndexOf(keyword, StringComparison.Ordinal);
                     if (index != -1)
                     {

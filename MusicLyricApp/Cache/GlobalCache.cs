@@ -7,6 +7,26 @@ namespace MusicLyricApp.Cache
     {
         /* --------------------------------------------------------------------------------------------------------- */
 
+        private static readonly Dictionary<string, IEnumerable<string>> PlaylistSongIdsCache =
+            new Dictionary<string, IEnumerable<string>>();
+
+        public static bool ContainsPlaylistSongIds(string playlistId)
+        {
+            return PlaylistSongIdsCache.ContainsKey(playlistId);
+        }
+
+        public static IEnumerable<string> GetSongIdsFromPlaylist(string playlistId)
+        {
+            PlaylistSongIdsCache.TryGetValue(playlistId, out var result);
+            return result;
+        }
+
+        public static void PutPlaylistSongIds(string playlistId, IEnumerable<string> songIds)
+        {
+            PlaylistSongIdsCache.Add(playlistId, songIds);
+        }
+        /* --------------------------------------------------------------------------------------------------------- */
+
         private static readonly Dictionary<string, IEnumerable<string>> AlbumSongIdsCache =
             new Dictionary<string, IEnumerable<string>>();
 

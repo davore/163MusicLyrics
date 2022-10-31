@@ -17,6 +17,18 @@ namespace MusicLyricApp.Api
             return "https://c.y.qq.com/";
         }
 
+        public QQMusicBean.PlaylistResult GetPlaylist(string playlistMid)
+        {
+            var data = new Dictionary<string, string>
+            {
+                { "playlistmid", playlistMid }
+            };
+
+            var resp = SendHttp("https://c.y.qq.com/v8/fcg-bin/fcg_v8_playlist_info_cp.fcg", data);
+
+            return resp.ToEntity<QQMusicBean.PlaylistResult>();
+        }
+
         public QQMusicBean.AlbumResult GetAlbum(string albumMid)
         {
             var data = new Dictionary<string, string>

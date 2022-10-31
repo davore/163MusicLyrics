@@ -40,7 +40,8 @@ namespace MusicLyricApp.Bean
     public enum SearchTypeEnum
     {
         [Description("单曲")] SONG_ID = 0,
-        [Description("专辑")] ALBUM_ID = 1
+        [Description("专辑")] ALBUM_ID = 1,
+        [Description("歌单")] PLAYLIST_ID = 2
     }
 
     // 强制两位类型
@@ -104,6 +105,7 @@ namespace MusicLyricApp.Bean
         public const string MUST_SEARCH_BEFORE_GET_SONG_PIC = "您必须先搜索，才能获取歌曲封面";
         public const string INPUT_ID_ILLEGAL = "您输入的ID不合法";
         public const string ALBUM_NOT_EXIST = "专辑信息暂未被收录或查询失败";
+        public const string PLAYLIST_NOT_EXIST = "歌单信息暂未被收录或查询失败";
         public const string SONG_NOT_EXIST = "歌曲信息暂未被收录或查询失败";
         public const string LRC_NOT_EXIST = "歌词信息暂未被收录或查询失败";
         public const string FUNCTION_NOT_SUPPORT = "该功能暂不可用，请等待后续更新";

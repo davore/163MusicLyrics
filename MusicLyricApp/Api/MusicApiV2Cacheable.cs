@@ -8,10 +8,28 @@ namespace MusicLyricApp.Api
     {
         protected abstract IEnumerable<string> GetSongIdsFromAlbum0(string albumId);
 
+        protected abstract IEnumerable<string> GetSongIdsFromPlaylist0(string playlistId);
+
         protected abstract Dictionary<string, SongVo> GetSongVo0(string[] songIds, out Dictionary<string, string> errorMsgDict);
 
         protected abstract LyricVo GetLyricVo0(string songId);
-        
+
+        public IEnumerable<string> GetSongIdsFromPlaylist(string playlistId)
+        {
+            if (GlobalCache.ContainsPlaylistSongIds(playlistId))
+            {
+                return GlobalCache.GetSongIdsFromPlaylist(playlistId);
+            }
+
+            var result = GetSongIdsFromPlaylist0(playlistId);
+            if (result != null)
+            {
+                GlobalCache.PutPlaylistSongIds(playlistId, result);
+            }
+
+            return result;
+        }
+
         public IEnumerable<string> GetSongIdsFromAlbum(string albumId)
         {
             if (GlobalCache.ContainsAlbumSongIds(albumId))

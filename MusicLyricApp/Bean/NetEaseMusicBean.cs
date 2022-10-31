@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MusicLyricApp.Bean
 {
@@ -60,6 +62,21 @@ namespace MusicLyricApp.Bean
     {
         public long Version { get; set; }
         public string Lyric { get; set; }
+    }
+
+    public class PlaylistResult
+    {
+        //public Song[] Tracks { get; set; }
+        public long Code { get; set; }
+        public Playlist playlist { get; set; }
+    }
+
+    public class Playlist
+    {
+        public Song[] Tracks { get; set; }
+        public string Id { get; set; }
+
+        public string[] Tags{ get; set; }
     }
 
     public class AlbumResult

@@ -8,6 +8,13 @@ namespace MusicLyricApp.Api
         /// <summary>
         /// 根据专辑ID获取歌曲ID列表
         /// </summary>
+        /// <param name="playlistId">歌单ID</param>
+        /// <returns>歌曲ID列表</returns>
+        IEnumerable<string> GetSongIdsFromPlaylist(string playlistId);
+        
+        /// <summary>
+        /// 根据专辑ID获取歌曲ID列表
+        /// </summary>
         /// <param name="albumId">专辑ID</param>
         /// <returns>歌曲ID列表</returns>
         IEnumerable<string> GetSongIdsFromAlbum(string albumId);

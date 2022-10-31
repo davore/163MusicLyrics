@@ -19,6 +19,20 @@ namespace MusicLyricApp.Api
             _api = new NetEaseMusicNativeApi();
         }
 
+        protected override IEnumerable<string> GetSongIdsFromPlaylist0(string playlistId)
+        {
+            var resp = _api.GetPlaylist(playlistId);
+
+            if (resp.Code == 200)
+            {
+                return resp.playlist.Tracks.Select(song => song.Id); 
+            }
+
+            _logger.Error("NetEaseMusicApiV2 GetSongIdsFromPlaylist failed, resp: {Resp}", resp.ToJson());
+
+            throw new MusicLyricException(ErrorMsg.PLAYLIST_NOT_EXIST);
+        }
+
         protected override IEnumerable<string> GetSongIdsFromAlbum0(string albumId)
         {
             var resp = _api.GetAlbum(albumId);

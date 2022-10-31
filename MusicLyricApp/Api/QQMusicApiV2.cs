@@ -15,6 +15,18 @@ namespace MusicLyricApp.Api
             _api = new QQMusicNativeApi();
         }
 
+        protected override IEnumerable<string> GetSongIdsFromPlaylist0(string playlistId)
+        {
+            var resp = _api.GetPlaylist(playlistId);
+
+            if (resp.Code == 0)
+            {
+                return resp.Data.List.Select(playlistSong => playlistSong.Songmid);
+            }
+
+            throw new MusicLyricException(ErrorMsg.PLAYLIST_NOT_EXIST);
+        }
+
         protected override IEnumerable<string> GetSongIdsFromAlbum0(string albumId)
         {
             var resp = _api.GetAlbum(albumId);

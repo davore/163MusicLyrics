@@ -140,8 +140,11 @@ namespace MusicLyricApp
             {
                 _api = new QQMusicApiV2();
             }
-            else
+            else if (param.SearchSource == SearchSourceEnum.NET_EASE_MUSIC)
             {
+                _api = new NetEaseMusicApiV2();
+            }
+            else {
                 _api = new NetEaseMusicApiV2();
             }
         }
@@ -275,6 +278,13 @@ namespace MusicLyricApp
                 var id = GlobalUtils.CheckInputId(input, searchSource, searchType);
                 switch (searchType)
                 {
+                    case SearchTypeEnum.PLAYLIST_ID:
+                        foreach (var songId in _api.GetSongIdsFromPlaylist(id))
+                        {
+                            _globalSearchInfo.SongIds.Add(songId);
+                        }
+
+                        break;
                     case SearchTypeEnum.ALBUM_ID:
                         foreach (var songId in _api.GetSongIdsFromAlbum(id))
                         {

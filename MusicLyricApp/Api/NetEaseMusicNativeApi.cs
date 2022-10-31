@@ -109,6 +109,26 @@ namespace MusicLyricApp.Api
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="playlistId"></param>
+        /// <returns></returns>
+        /// <exception cref="WebException"></exception>
+        public PlaylistResult GetPlaylist(string playlistId)
+        {
+            var url = $"https://music.163.com/api/v6/playlist/detail?id={playlistId}";
+
+            var data = new Dictionary<string, string>
+            {
+                //{ "csrf_token", string.Empty },
+            };
+
+            var raw = SendHttp(url, Prepare(JsonConvert.SerializeObject(data)));
+
+            return JsonConvert.DeserializeObject<PlaylistResult>(raw);
+        }
+
+        /// <summary>
         /// 获得原始歌词结果
         /// </summary>
         /// <param name="songId">音乐ID</param>
